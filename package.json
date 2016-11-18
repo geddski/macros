@@ -1,7 +1,7 @@
 {
-    "name": "commander",
-    "displayName": "commander",
-    "description": "run multiple commands with a single keystroke",
+    "name": "macros",
+    "displayName": "macros",
+    "description": "automate repetitive actions with custom macros",
     "version": "0.0.1",
     "publisher": "geddski",
     "engines": {
@@ -11,14 +11,14 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "*"
     ],
     "main": "./extension",
     "contributes": {
-        "commands": [{
-            "command": "extension.sayHello",
-            "title": "Hello World"
-        }]
+        "configuration": {
+            "type": "object",
+            "title": "Macros configuration"
+        }
     },
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install"
