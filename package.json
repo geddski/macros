@@ -2,7 +2,7 @@
     "name": "macros",
     "displayName": "macros",
     "description": "automate repetitive actions with custom macros",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "publisher": "geddski",
     "repository": "https://github.com/geddski/macros",
     "engines": {
