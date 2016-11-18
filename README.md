@@ -3,6 +3,8 @@
 Brings simple, powerful custom macros support to VS Code.
 Made with <3 by [geddski](http://gedd.ski)
 
+See also [Level up your Coding with Macros](http://gedd.ski/post/level-up-coding-with-macros/) 
+
 ## Create Custom Macros
 
 Create your own custom macros by adding them to your `settings.json` (Code > Preferences > User Settings)
