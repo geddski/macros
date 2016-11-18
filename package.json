@@ -2,7 +2,7 @@
     "name": "macros",
     "displayName": "macros",
     "description": "automate repetitive actions with custom macros",
-    "version": "0.0.1",
+    "version": "1.0.3",
     "publisher": "geddski",
     "engines": {
         "vscode": "^1.5.0"
