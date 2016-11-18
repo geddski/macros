@@ -49,6 +49,9 @@ MIT
 
 Doesn't currently add macros to command pallete (have to use keybindings)
 
+You currently have to reload the VS Code window after making a change to your macros.
+
+
 ## Release Notes
 
 ### 1.0.0
