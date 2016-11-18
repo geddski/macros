@@ -1,5 +1,5 @@
-let vscode = require('vscode');
-let PromiseSeries = require('promise-series');
+const vscode = require('vscode');
+const PromiseSeries = require('promise-series');
 
 function activate(context) {
   const settings = vscode.workspace.getConfiguration('macros');
@@ -7,9 +7,9 @@ function activate(context) {
     return prop !== 'has' && prop !== 'get' && prop !== 'update';
   });
 
-  for (name of macros) {
-    let disposable = vscode.commands.registerCommand(`macros.${name}`, function () {
-      let series = new PromiseSeries();
+  macros.forEach((name) => {
+    const disposable = vscode.commands.registerCommand(`macros.${name}`, function () {
+      const series = new PromiseSeries();
       settings[name].forEach((action) => {
         series.add(() => {
           vscode.commands.executeCommand(action);
@@ -18,7 +18,7 @@ function activate(context) {
       return series.run();
     })
     context.subscriptions.push(disposable);
-  }
+  })
 }
 exports.activate = activate;
 
