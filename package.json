@@ -4,6 +4,7 @@
     "description": "automate repetitive actions with custom macros",
     "version": "1.0.3",
     "publisher": "geddski",
+    "repository": "https://github.com/geddski/macros",
     "engines": {
         "vscode": "^1.5.0"
     },
