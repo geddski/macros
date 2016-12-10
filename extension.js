@@ -1,7 +1,24 @@
 const vscode = require('vscode');
 const PromiseSeries = require('promise-series');
 
+var activeContext;
+var disposables = [];
+
 function activate(context) {
+  loadMacros(context);
+  activeContext = context;
+  vscode.workspace.onDidChangeConfiguration(() => {
+    disposeMacros();
+    loadMacros(activeContext);
+  });
+}
+exports.activate = activate;
+
+function deactivate() {
+}
+exports.deactivate = deactivate;
+
+function loadMacros(context) {
   const settings = vscode.workspace.getConfiguration('macros');
   const macros = Object.keys(settings).filter((prop) => {
     return prop !== 'has' && prop !== 'get' && prop !== 'update';
@@ -18,10 +35,12 @@ function activate(context) {
       return series.run();
     })
     context.subscriptions.push(disposable);
-  })
+    disposables.push(disposable);
+  });
 }
-exports.activate = activate;
 
-function deactivate() {
+function disposeMacros() {
+  for (var disposable of disposables) {
+    disposable.dispose();
+  }
 }
-exports.deactivate = deactivate;
