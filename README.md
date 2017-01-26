@@ -7,7 +7,7 @@ See also [Level up your Coding with Macros](http://gedd.ski/post/level-up-coding
 
 ## Create Custom Macros
 
-Create your own custom macros by adding them to your `settings.json` (Code > Preferences > User Settings)
+Create your own custom macros by adding them to your `settings.json` (Code|File > Preferences > User Settings)
 
 For example:
 
@@ -25,13 +25,13 @@ For example:
 This macro creates a copy of the current line, comments out the original line, and moves the cursor down to the copy.
 
 Your macros can run any built-in VS Code action, and even actions from other extensions. 
-To see all the names of possible actions VS Code can run, see `Default Keyboard Shortcuts` (Code > Preferences > Keyboard Shortcuts) 
+To see all the names of possible actions VS Code can run, see `Default Keyboard Shortcuts` (Code|File > Preferences > Keyboard Shortcuts) 
 
 Give your macros names that briefly describe what they do.
 
 ## Add Keybindings to Run your Macros
 
-in `keybindings.json` (Code > Preferences > Keyboard Shortcuts) add bindings to your macros:
+in `keybindings.json` (Code|File > Preferences > Keyboard Shortcuts) add bindings to your macros:
 
 ```json
 {
