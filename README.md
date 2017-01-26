@@ -55,6 +55,19 @@ Many commands accept arguments, like the "type" command which lets you insert te
 }
 ```
 
+## Executing Snippets as part of a Macro
+
+Macros can also execute any of your snippets which is super neat. Just insert the same text that you would normally type for the snippet, followed by the `insertSnippet` command:
+
+```json
+"macros": {
+  "doMySnippet": [
+    {"command": "type", "args": {"text": "mySnippetPrefixHere"}},
+    "insertSnippet"
+  ]
+}
+```
+
 ## License
 MIT
 
