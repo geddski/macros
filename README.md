@@ -42,6 +42,19 @@ in `keybindings.json` (Code > Preferences > Keyboard Shortcuts) add bindings to 
 
 Notice that `macros.my_macro_name` has to match what you named your macro. 
 
+## Passing Arguments to Commands
+
+Many commands accept arguments, like the "type" command which lets you insert text into the editor. For these cases use an object instead of a string when specifying the command to call in your `settings.json`:
+
+```json
+"macros": {
+  "addSemicolon": [
+    "cursorEnd",
+      {"command": "type", "args": {"text": ";"}}
+  ]
+}
+```
+
 ## License
 MIT
 

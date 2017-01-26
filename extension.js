@@ -29,7 +29,14 @@ function loadMacros(context) {
       const series = new PromiseSeries();
       settings[name].forEach((action) => {
         series.add(() => {
-          vscode.commands.executeCommand(action);
+          // support objects so that we can pass arguments from user settings to the commands
+          if (typeof action === "object"){
+            vscode.commands.executeCommand(action.command, action.args);
+          }
+          // support commands as strings (no args)
+          else{
+            vscode.commands.executeCommand(action);
+          }
         })
       })
       return series.run();
