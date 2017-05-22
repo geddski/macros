@@ -1,5 +1,4 @@
 const vscode = require('vscode');
-const PromiseSeries = require('promise-series');
 
 var activeContext;
 var disposables = [];
@@ -14,33 +13,46 @@ function activate(context) {
 }
 exports.activate = activate;
 
-function deactivate() {
-}
+function deactivate() {}
 exports.deactivate = deactivate;
+
+function executeDelayCommand(action) {
+  return new Promise(resolve => {
+    const milliseconds = Array.isArray(action.args) ? action.args[0] : 0;
+    setTimeout(() => resolve(), milliseconds);
+  });
+}
+
+function executeCommand(action) {
+  // support objects so that we can pass arguments from user settings to the commands
+  if (typeof action === 'object') {
+    if (action.command === '$delay') {
+      return executeDelayCommand(action);
+    } else {
+      return vscode.commands.executeCommand(action.command, action.args);
+    }
+  } else {
+    // support commands as strings (no args)
+    return vscode.commands.executeCommand(action);
+  }
+}
 
 function loadMacros(context) {
   const settings = vscode.workspace.getConfiguration('macros');
-  const macros = Object.keys(settings).filter((prop) => {
+  const macros = Object.keys(settings).filter(prop => {
     return prop !== 'has' && prop !== 'get' && prop !== 'update';
   });
 
-  macros.forEach((name) => {
-    const disposable = vscode.commands.registerCommand(`macros.${name}`, function () {
-      const series = new PromiseSeries();
-      settings[name].forEach((action) => {
-        series.add(() => {
-          // support objects so that we can pass arguments from user settings to the commands
-          if (typeof action === "object"){
-            vscode.commands.executeCommand(action.command, action.args);
-          }
-          // support commands as strings (no args)
-          else{
-            vscode.commands.executeCommand(action);
-          }
-        })
-      })
-      return series.run();
-    })
+  macros.forEach(name => {
+    const disposable = vscode.commands.registerCommand(
+      `macros.${name}`,
+      function() {
+        return settings[name].reduce(
+          (promise, action) => promise.then(() => executeCommand(action)),
+          Promise.resolve()
+        );
+      }
+    );
     context.subscriptions.push(disposable);
     disposables.push(disposable);
   });

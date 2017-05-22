@@ -31,8 +31,5 @@
         "eslint": "^3.6.0",
         "@types/node": "^6.0.40",
         "@types/mocha": "^2.2.32"
-    },
-    "dependencies": {
-        "promise-series": "^1.0.0"
     }
 }
