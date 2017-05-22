@@ -18,7 +18,13 @@
     "contributes": {
         "configuration": {
             "type": "object",
-            "title": "Macros configuration"
+            "title": "Macros configuration",
+            "properties": {
+                "macros": {
+                    "type": "object",
+                    "description": "The root element to define macros in."
+                }
+            }
         }
     },
     "scripts": {
