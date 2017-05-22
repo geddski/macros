@@ -18,8 +18,7 @@ exports.deactivate = deactivate;
 
 function executeDelayCommand(action) {
   return new Promise(resolve => {
-    const milliseconds = Array.isArray(action.args) ? action.args[0] : 0;
-    setTimeout(() => resolve(), milliseconds);
+    setTimeout(() => resolve(), action.args && action.args.milliseconds);
   });
 }
 
