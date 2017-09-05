@@ -18,7 +18,11 @@
     "contributes": {
         "configuration": {
             "type": "object",
-            "title": "Macros configuration"
+            "title": "Macros configuration",
+            "properties":{
+                "macros":{
+                }
+            }
         }
     },
     "scripts": {
